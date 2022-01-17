@@ -1,0 +1,3 @@
+Flask~=2.0
+recipe-scrapers~=13.12
+uWSGI~=2.0.17.1
