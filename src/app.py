@@ -4,6 +4,9 @@ import logging
 
 
 app = Flask(__name__)
+# Variable "application" is picked up by uWSGI server
+application = app
+
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
 
