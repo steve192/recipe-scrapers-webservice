@@ -25,7 +25,3 @@ RUN set -x \
 EXPOSE 9090
 
 CMD ["./start.sh"]
-
-# ENTRYPOINT [ "python" ]
-
-# CMD [ "src/app.py" ]
