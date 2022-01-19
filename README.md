@@ -27,7 +27,7 @@ services:
 
 
 ### Routes
-```/api/v1/scrape-recipe?url=<url to your recipe>```\
+```GET /api/v1/scrape-recipe?url=<url to your recipe>```\
 responds with
 ```json
 {
