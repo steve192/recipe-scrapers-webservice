@@ -15,6 +15,9 @@ if __name__ == '__main__':
 def import_recipe():
     scrape_url = request.args.get("url")
 
+    if not scrape_url:
+        return jsonify({"error": "No recipe provided via parameter 'url'"}), 400
+
     try:
         scraper = scrape_me(scrape_url)
     except Exception as e:
@@ -24,30 +27,30 @@ def import_recipe():
             scraper = scrape_me(scrape_url, wild_mode=True)
         except Exception as e:
             logging.error("Error retrying with wild mode")
-            return "", 501
+            return jsonify({"error": "Given recipe url not supported"}), 501
 
     response = {
-        "language": getInfo(scraper, "language"),
-        "title": getInfo(scraper, "title"),
-        "category": getInfo(scraper, "category"),
-        "author": getInfo(scraper, "author"),
-        "total_time": getInfo(scraper, "total_time"),
-        "cook_time": getInfo(scraper, "cook_time"),
-        "prep_time": getInfo(scraper, "prep_time"),
-        "yields": getInfo(scraper, "yields"),
-        "imgage": getInfo(scraper, "image"),
-        "ingredients": getInfo(scraper, "ingredients"),
-        "nutrients": getInfo(scraper, "nutrients"),
-        "instructions": getInfo(scraper, "instructions"),
-        "ratings": getInfo(scraper, "ratings"),
-        "cuisine": getInfo(scraper, "cuisine"),
-        "host": getInfo(scraper, "host"),
-        "links": getInfo(scraper, "links"),
+        "language": get_info(scraper, "language"),
+        "title": get_info(scraper, "title"),
+        "category": get_info(scraper, "category"),
+        "author": get_info(scraper, "author"),
+        "total_time": get_info(scraper, "total_time"),
+        "cook_time": get_info(scraper, "cook_time"),
+        "prep_time": get_info(scraper, "prep_time"),
+        "yields": get_info(scraper, "yields"),
+        "imgage": get_info(scraper, "image"),
+        "ingredients": get_info(scraper, "ingredients"),
+        "nutrients": get_info(scraper, "nutrients"),
+        "instructions": get_info(scraper, "instructions"),
+        "ratings": get_info(scraper, "ratings"),
+        "cuisine": get_info(scraper, "cuisine"),
+        "host": get_info(scraper, "host"),
+        "links": get_info(scraper, "links"),
     }
     return jsonify(response)
 
 
-def getInfo(scraper, attribute):
+def get_info(scraper, attribute):
     try:
         method = getattr(scraper, attribute, None)
         return method()
