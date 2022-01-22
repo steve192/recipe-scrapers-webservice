@@ -38,7 +38,7 @@ def import_recipe():
         "cook_time": get_info(scraper, "cook_time"),
         "prep_time": get_info(scraper, "prep_time"),
         "yields": get_info(scraper, "yields"),
-        "imgage": get_info(scraper, "image"),
+        "image": get_info(scraper, "image"),
         "ingredients": get_info(scraper, "ingredients"),
         "nutrients": get_info(scraper, "nutrients"),
         "instructions": get_info(scraper, "instructions"),
