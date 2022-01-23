@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from recipe_scrapers import scrape_me
+from recipe_scrapers import scrape_me, SCRAPERS
 import logging
 
 
@@ -9,6 +9,11 @@ application = app
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
+
+
+@app.get("/api/v1/scrape-recipe/supported-hosts")
+def get_supported_hosts():
+    return jsonify(list(SCRAPERS.keys())), 200
 
 
 @app.get("/api/v1/scrape-recipe")

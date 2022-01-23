@@ -28,7 +28,7 @@ services:
 
 ### Routes
 ```GET /api/v1/scrape-recipe?url=<url to your recipe>```\
-responds with
+responds with a recipe
 ```json
 {
 	"author": "AuthorHere",
@@ -57,5 +57,26 @@ responds with
 	"total_time": 30,
 	"yields": "2 serving(s)"
 }
+
+```
+
+```GET /api/v1/scrape-recipe/supported-hosts```\
+responds with a list of supported hosts
+```json
+[
+   "acouplecooks.com",
+   "claudia.abril.com.br",
+   "afghankitchenrecipes.com",
+   "allrecipes.com",
+   "alltommat.se",
+   "amazingribs.com",
+.
+.
+.
+   "yemek.com",
+   "yummly.com",
+   "zeit.de",
+   "zenbelly.com"
+]
 
 ```
