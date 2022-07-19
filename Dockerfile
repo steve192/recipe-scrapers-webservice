@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.16.1
 
 # Install python and build-dependencies for uWSGI
 RUN apk add --update --no-cache python3 python3-dev build-base linux-headers pcre-dev && ln -sf python3 /usr/bin/python
