@@ -10,7 +10,7 @@ RUN pip3 install --no-cache --upgrade pip setuptools
 # Install dependencies
 COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
-RUN pip install --no-cache -r requirements.txt
+RUN pip3 install --no-cache -r requirements.txt
 
 # Install application and configs
 COPY . /app
