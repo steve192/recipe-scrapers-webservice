@@ -1,3 +1,3 @@
 Flask~=3.0
-recipe-scrapers~=14.49
+recipe-scrapers~=14.50
 gunicorn~=21.2.0
