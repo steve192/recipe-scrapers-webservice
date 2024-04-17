@@ -1,11 +1,11 @@
-FROM alpine:3.19
+FROM python:3.12-alpine3.19
 
 # Install python and build-dependencies for uWSGI
-RUN apk add --update --no-cache python3 python3-dev build-base linux-headers pcre-dev && ln -sf python3 /usr/bin/python
+RUN apk add --update --no-cache python3 python3-dev py3-pip build-base linux-headers pcre-dev && ln -sf python3 /usr/bin/python
 
-# Install pip
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+# Install pip, currently not needed, as installed by apk
+# RUN python3 -m ensurepip
+# RUN pip3 install --no-cache --upgrade pip setuptools
 
 # Install dependencies
 COPY ./requirements.txt /app/requirements.txt
