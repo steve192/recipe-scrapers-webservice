@@ -1,3 +1,6 @@
 Flask~=3.0
-recipe-scrapers~=14.55
+recipe_scrapers~=14.55
 gunicorn~=22.0.0
+# There some dependency of recipe_scrapers is incompatible with later versions 
+# (due to not correctly defined in its dependencies)
+lxml==5.1.0
