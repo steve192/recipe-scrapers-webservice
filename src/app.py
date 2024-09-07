@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
-from recipe_scrapers import scrape_me, SCRAPERS
+from recipe_scrapers import scrape_html, SCRAPERS
 import logging
+
+import requests
 
 
 app = Flask(__name__)
@@ -23,13 +25,18 @@ def import_recipe():
     if not scrape_url:
         return jsonify({"error": "No recipe provided via parameter 'url'"}), 400
 
+    try: 
+        html = requests.get(scrape_url, headers={"User-Agent": "Recipe Scraper"}).content
+    except Exception as e:
+        logging.error("Error retrieving html of recipe "+ scrape_url)
+    
     try:
-        scraper = scrape_me(scrape_url)
+        scraper = scrape_html(html, scrape_url, wild_mode=False)
     except Exception as e:
         logging.warn("Error while scraping " + scrape_url)
         logging.info("Trying with wild mode")
         try:
-            scraper = scrape_me(scrape_url, wild_mode=True)
+            scraper = scrape_html(html, scrape_url, wild_mode=True)
         except Exception as e:
             logging.error("Error retrying with wild mode")
             return jsonify({"error": "Given recipe url not supported"}), 501
