@@ -1,4 +1,4 @@
-Flask~=3.0
+Flask~=3.1
 recipe_scrapers~=15.1
 gunicorn~=22.0.0
 
