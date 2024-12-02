@@ -1,5 +1,5 @@
 Flask~=3.0
-recipe_scrapers~=15.1
+recipe_scrapers~=15.3
 gunicorn~=22.0.0
 
 # Edit: Not needed anymore, but kept if happens again
