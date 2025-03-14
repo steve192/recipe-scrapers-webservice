@@ -31,12 +31,12 @@ def import_recipe():
         logging.error("Error retrieving html of recipe "+ scrape_url)
     
     try:
-        scraper = scrape_html(html, scrape_url, wild_mode=False)
+        scraper = scrape_html(html, scrape_url, supported_only=False,online=False )
     except Exception as e:
         logging.warn("Error while scraping " + scrape_url)
         logging.info("Trying with wild mode")
         try:
-            scraper = scrape_html(html, scrape_url, wild_mode=True)
+            scraper = scrape_html(html, scrape_url, supported_only=False, online=False)
         except Exception as e:
             logging.error("Error retrying with wild mode")
             return jsonify({"error": "Given recipe url not supported"}), 501
