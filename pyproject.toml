@@ -9,9 +9,9 @@ license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "flask (>=3.1,<4.0)",
-    "recipe-scrapers (>=15.6,<16.0)",
-    "gunicorn (>=23.0.0,<24.0.0)"
+    "flask (==3.1.2)",
+    "recipe-scrapers (==15.9.0)",
+    "gunicorn (==23.0.0)"
 ]
 
 [tool.poetry]
