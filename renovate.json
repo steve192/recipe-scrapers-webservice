@@ -16,9 +16,10 @@
     "dependencies"
   ],
   "lockFileMaintenance": {
-    "description": "Renovate only bumps the direct dependencies in pyproject.toml. Refreshing poetry.lock weekly keeps the transitive ones (urllib3, certifi, lxml, ...) current as well",
+    "description": "Renovate only bumps the direct dependencies in pyproject.toml. Refreshing poetry.lock weekly keeps the transitive ones (urllib3, certifi, lxml, ...) current as well. A lock refresh has no release date, so with the default timestamp-required its minimum-release-age check would stay pending forever and it would never automerge. The 7 days still apply to what it locks: Renovate runs Poetry with POETRY_SOLVER_MIN_RELEASE_AGE taken from minimumReleaseAge",
     "enabled": true,
-    "automerge": true
+    "automerge": true,
+    "minimumReleaseAgeBehaviour": "timestamp-optional"
   },
   "customManagers": [
     {
@@ -74,6 +75,14 @@
       ],
       "groupName": "python-dependencies",
       "automerge": true
+    },
+    {
+      "description": "Python updates: create the branch only once the release is older than minimumReleaseAge. Renovate's default creates it at once with a pending check, but it runs Poetry with the same minimum age, so Poetry refuses to lock the release and the branch fails CI until it is retried after the wait",
+      "matchManagers": [
+        "pep621",
+        "poetry"
+      ],
+      "prCreation": "not-pending"
     },
     {
       "description": "poetry-core under [build-system]: with package-mode = false nothing is ever built, so its version does not matter, and Poetry refuses to lock it ('not dependencies of this project'), which fails every update branch that touches it",
