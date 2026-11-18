@@ -1,6 +1,6 @@
 [project]
 name = "recipe-scrapers-webservice"
-version = "1.22.1"
+version = "1.22.2"
 description = ""
 authors = [
     {name = "Your Name",email = "you@example.com"}
