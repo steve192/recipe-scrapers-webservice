@@ -1,4 +1,4 @@
-FROM python:3.13-alpine3.19 AS builder
+FROM python:3.13-alpine AS builder
 
 # Configure Poetry
 ENV POETRY_VERSION=2.1.1
@@ -26,7 +26,7 @@ RUN poetry export -f requirements.txt --output requirements.txt
 
 
 
-FROM python:3.13-alpine3.19 AS app
+FROM python:3.13-alpine AS app
 
 # Install python and build-dependencies for uWSGI
 RUN apk add --update --no-cache python3 python3-dev py3-pip build-base linux-headers pcre-dev && ln -sf python3 /usr/bin/python

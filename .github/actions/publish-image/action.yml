@@ -1,0 +1,52 @@
+name: Publish image
+description: >-
+  Build the Docker image (whose build stage also runs the tests) and, unless told otherwise,
+  push it under the given tags. The repository must already be checked out.
+
+inputs:
+  tags:
+    description: Newline separated image tags to build.
+    required: true
+  push:
+    description: Whether to push the image, or only build it to prove that it builds.
+    required: false
+    default: "true"
+  load:
+    description: Whether to load the built image into the local Docker daemon, e.g. to smoke test it.
+    required: false
+    default: "false"
+  token:
+    description: >-
+      Token to log into ghcr.io with. A composite action cannot read secrets itself, so the
+      caller passes GITHUB_TOKEN. Only needed when pushing.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Docker buildx
+      uses: docker/setup-buildx-action@v4.4.1
+
+    - name: Log into ghcr.io
+      if: inputs.push == 'true'
+      uses: docker/login-action@v4.7.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ inputs.token }}
+
+    - name: Build image
+      uses: docker/build-push-action@v7.4.0
+      with:
+        context: .
+        push: ${{ inputs.push == 'true' }}
+        load: ${{ inputs.load == 'true' }}
+        tags: ${{ inputs.tags }}
+        # Links the ghcr.io package to this repository, and lets Renovate in consuming
+        # projects find the release notes of an image update.
+        labels: |
+          org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          org.opencontainers.image.revision=${{ github.sha }}
+        cache-from: type=gha,scope=app
+        cache-to: type=gha,scope=app,mode=max

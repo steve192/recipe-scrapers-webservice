@@ -1,0 +1,35 @@
+name: Build & Test
+
+# Reusable validation suite: a no-push Docker build, whose build stage runs the pytest suite,
+# followed by a smoke test of the built image. Called by ci.yml for pushes and pull requests,
+# so the validation logic lives in one place.
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Git ref to check out and validate. Empty = the triggering ref."
+        type: string
+        required: false
+        default: ""
+
+jobs:
+  app:
+    name: App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref }}
+
+      # The tests run inside the image build, against the same Python the image ships with.
+      - name: Build Docker image (no push)
+        uses: ./.github/actions/publish-image
+        with:
+          push: "false"
+          load: "true"
+          tags: recipe-scrapers-webservice-ci:${{ github.sha }}
+
+      - name: Smoke test Docker image
+        run: bash scripts/smoke-test-image.sh recipe-scrapers-webservice-ci:${{ github.sha }}
