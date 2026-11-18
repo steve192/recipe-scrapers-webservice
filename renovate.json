@@ -5,7 +5,9 @@
     ":semanticCommits"
   ],
   "timezone": "UTC",
-  "dependencyDashboard": true,
+  "dependencyDashboard": {
+    "enabled": true
+  },
   "rangeStrategy": "pin",
   "minimumReleaseAge": "7 days",
   "platformAutomerge": true,
@@ -72,6 +74,16 @@
       ],
       "groupName": "python-dependencies",
       "automerge": true
+    },
+    {
+      "description": "poetry-core under [build-system]: with package-mode = false nothing is ever built, so its version does not matter, and Poetry refuses to lock it ('not dependencies of this project'), which fails every update branch that touches it",
+      "matchManagers": [
+        "poetry"
+      ],
+      "matchDepTypes": [
+        "build-system.requires"
+      ],
+      "enabled": false
     },
     {
       "description": "Poetry tooling in the Docker build stage",
