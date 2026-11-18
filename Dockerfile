@@ -1,7 +1,7 @@
 FROM python:3.13-alpine AS builder
 
 # Configure Poetry
-ENV POETRY_VERSION=2.1.1
+ENV POETRY_VERSION=2.5.1
 ENV POETRY_HOME=/opt/poetry
 ENV POETRY_VENV=/opt/poetry-venv
 ENV POETRY_CACHE_DIR=/opt/.cache
@@ -14,7 +14,7 @@ RUN python3 -m venv $POETRY_VENV \
 # Add `poetry` to PATH
 ENV PATH="${PATH}:${POETRY_VENV}/bin"
 
-RUN poetry self add poetry-plugin-export==1.9.0
+RUN poetry self add poetry-plugin-export==1.10.1
 
 WORKDIR /app
 
