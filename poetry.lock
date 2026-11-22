@@ -978,27 +978,27 @@ rdf4j = ["httpx (>=0.28.1,<0.29.0)"]
 
 [[package]]
 name = "recipe-scrapers"
-version = "15.13.0"
+version = "15.14.0"
 description = "Python package, scraping recipes from all over the internet"
 optional = false
-python-versions = ">=3.11"
+python-versions = ">=3.11.5"
 groups = ["main"]
 files = [
-    {file = "recipe_scrapers-15.13.0-py3-none-any.whl", hash = "sha256:f67cb8bf655efb3748a0de6116ad69b7df4a5c2a70b71785e82b4ec33312fc63"},
-    {file = "recipe_scrapers-15.13.0.tar.gz", hash = "sha256:5ccc0a8d88f5b0829e96e65e774566870d5398a983512e8bd68bd1b7d8964eaa"},
+    {file = "recipe_scrapers-15.14.0-py3-none-any.whl", hash = "sha256:0a014c0d83d7935b92a77a6abc1b0e7d3d0f0724ca3217f642cb70be885b6df4"},
+    {file = "recipe_scrapers-15.14.0.tar.gz", hash = "sha256:ad1dee3ddd8044bf83956b91742e10cd4d56fbd10edd59ec19d0b0922bfb18fb"},
 ]
 
 [package.dependencies]
-beautifulsoup4 = ">=4.12.3"
-extruct = ">=0.17.0"
-isodate = ">=0.6.1"
+beautifulsoup4 = ">=4.13.1"
+extruct = ">=0.18.0"
+isodate = ">=0.7.2"
 
 [package.extras]
 all = ["recipe_scrapers[dev,docs,linters,online,tests]"]
 dev = ["recipe-scrapers[docs,linters,tests]"]
 docs = ["markdown-exec (>=1.10.0)", "mkdocs (>=1.6.1)", "mkdocs-material (>=9.5.48)", "mkdocstrings (>=0.27.0)", "mkdocstrings-python (>=1.12.2)"]
 linters = ["black (==26.10.1)", "flake8 (==7.4.1)", "pep8-naming (==0.15.1)", "pre-commit (==4.7.0)"]
-online = ["requests (>=2.31.0)"]
+online = ["requests (>=2.32.4)"]
 tests = ["coverage (>=7.16.2)", "unittest-parallel (>=1.8.6)"]
 
 [[package]]
@@ -1129,4 +1129,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "12e7bc8ff399845d0c86f3a94a83e191d56538b8fbb87c23c2ffa88acba4c950"
+content-hash = "3ecc500f750b21c46853444200912a1d02166730cde74a05f7c64d78c2889fbe"
