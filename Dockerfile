@@ -1,7 +1,7 @@
 FROM python:3.15-alpine AS builder
 
 # Configure Poetry
-ENV POETRY_VERSION=2.5.1
+ENV POETRY_VERSION=2.5.2
 ENV POETRY_HOME=/opt/poetry
 ENV POETRY_VENV=/opt/poetry-venv
 ENV POETRY_CACHE_DIR=/opt/.cache
